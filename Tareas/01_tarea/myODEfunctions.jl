@@ -105,12 +105,12 @@ end
 
 # Evolucionamos el probleama utilizando el método con saltos temporales dt
 function myODEsolver(Problem, Method; dt::Float64 = 0.01)
-    f,y0,intervalo,param = Problem                    # Datos específicos del problema que estamos resolviendo
+    f,y0,intervalo,param = Problem               # Datos específicos del problema que estamos resolviendo
     tini,tfin=intervalo                          # Tiempos iniciales y finales
-    N=1+Int(floor((tfin-tini)/dt))                # Cantidad de pasos temporales
-    y=Array{typeof(y0[1])}(undef,N,length(y0))    # Vector donde guardaremos y
-    t=zeros(N)                                    #Vector donde guardaremos t
-    y[1,:] .= y0                                    #Dato inicial
+    N=1+Int(floor((tfin-tini)/dt))               # Cantidad de pasos temporales
+    y=Array{typeof(y0[1])}(undef,N,length(y0))   # Vector donde guardaremos y
+    t=zeros(N)                                   # Vector donde guardaremos t
+    y[1,:] .= y0                                 # Dato inicial
     t[1]=tini
     for i in 2:N
         t[i] = tini + (i-1)*dt
