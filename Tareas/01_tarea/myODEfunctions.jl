@@ -37,7 +37,7 @@ function RK2step_Heun(y,f,t,dt,param)
     k_2 = f(y_improved,(t+dt),param)        # fuerza a tiempo evolucionado
 
     # y(i+1) = (y(i) + increment_function)
-    y = y + 0.5*dt*(k_1 + k_2)         # solución a tiempo evolucionado
+    y = y + 0.5*dt*(k_1 + k_2)              # solución a tiempo evolucionado
     return y
 end
 
@@ -65,7 +65,7 @@ function RK2step_Ralston(y,f,t,dt,param)
     k_1 = f(y,t,param)                          # fuerza a tiempo no evolucionado
     dt_improved = 0.25*dt                       # medio paso temporal
 
-    y_improved = y + (3.0*k_1*dt_improved)        # solución semi-evolucionada
+    y_improved = y + (3.0*k_1*dt_improved)      # solución semi-evolucionada
     k_2 = f(y_improved,(t-dt_improved),param)   # fuerza a tiempo semievolucionado
 
     # y(i+1) = (y(i) + increment_function)
