@@ -108,7 +108,7 @@ function wave_modulation_function(t,ω)
     return sin(t*ω)*cos(2*ω*t)
 end
 
-function reflexion(t,χ) # reflection
+function reflection(t,χ)
     return -χ
 end
 
@@ -147,35 +147,15 @@ end
 
 function resolve_EDO_oneStep(FinDiffOpSBP,  # Operador de diferencia finita con SBP
     mapSBP,              # elemento de la forma/mapa para cumplir SBP
-    Δx,                  # Space step
+    Δx,                  # space step
+    tevol,               # tiempo actual
+    Δt,                  # time step
     c,                   # wave velocity
     func01,              # función para evolucionar ecuación de advección
     func02,param_func02, # función y parametros para definir condicion de borde
     CI,                  # Condiciones iniciales
     Method)              # Método a usar para la resolver EDO
 
-    time_tuple = (0,1.0);    # tupla con intervalo temporal
-    Δt = Δx/abs(c);             # time step
-    param_tuple = (mapSBP,FinDiffOpSBP,c,func02,param_func02,Δx); # parameters
-    prob = ODEProblem(func01,CI,time_tuple,param_tuple);    # problem definition
-    integrator = init(prob,Method(),dt=Δt,adaptive=false)
-    step!(integrator)
-    return integrator;
-end
-
-function resolve_EDO_oneStep2(FinDiffOpSBP,  # Operador de diferencia finita con SBP
-    mapSBP,              # elemento de la forma/mapa para cumplir SBP
-    Δx,                  # Space step
-    tevol,
-    Δtspecif,
-    c,                   # wave velocity
-    func01,              # función para evolucionar ecuación de advección
-    func02,param_func02, # función y parametros para definir condicion de borde
-    CI,                  # Condiciones iniciales
-    Method)              # Método a usar para la resolver EDO
-
-    #Δt = Δx/abs(c);             # time step
-    Δt = Δtspecif
     time_tuple = (tevol,tevol+2*Δt);    # tupla con intervalo temporal
     param_tuple = (mapSBP,FinDiffOpSBP,c,func02,param_func02,Δx); # parameters
     prob = ODEProblem(func01,CI,time_tuple,param_tuple);    # problem definition
