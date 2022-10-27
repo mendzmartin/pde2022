@@ -90,7 +90,7 @@ function F_sbp_matricial_left!(du,u,p,t)
     hNN, D, c,g, parg,dx = p
     h = 1. /dx
     mul!(du, D, u, -c*h,0)
-    du[N] += -c * (h/hNN)*(g(t, parg) - u[N])
+    du[N] += -c * (h/hNN)*(g(t, parg) - u[N]) # aquí -c≡|c|
 end
 # -------------------------------------------------------------------
 
