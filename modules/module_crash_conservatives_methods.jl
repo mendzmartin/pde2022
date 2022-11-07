@@ -19,34 +19,61 @@ function burgersspeed(U, c)
     return maximum(abs, U);  #no encuentro forma de escribir esto sin que aloque memoria...
 end
 
+function shallowwatersspeed(U,c)
+    return maximum(abs,U)
+end
+
 # ----------------------------------------------------------------
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # FLUJOS
 
-function advection!(F, U, c)
+function advection!(F,U,c)
     @. F = c*U;
 end
 
-function burgers!(F, U, Fpars)
+function burgers!(F,U,Fpars)
     @. F = 0.5*U*U;
+end
+
+function shallowwaters(F,U,g)
+    F[1] = -U[2]
+    F[2] = -(U[2]*U[2]/U[1] + g*U[1]*U[1]/2)
+end
+
+# ----------------------------------------------------------------
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+## CONDICIONES INICIALES
+
+function oscillator_condition(N,N_FIELDS,x,CIpar)
+    u0,ω,A=CIpar;
+    #Inicializamos el dato
+    u = Array{Float64}(undef,N,N_FIELDS);
+    @. u[:,1] = u0 + A*sin(ω*x);
+    return u;
+end
+
+function SW_oscillator_condition(N,N_FIELDS,x,CIpar)
+    u0,ω,A=CIpar;
+    #Inicializamos el dato
+    u = Array{Float64}(undef,N,N_FIELDS);
+    @. u[:,1] = u0 + A*sin(ω*x);
+    @. u[:,2] = 0.0;
+    return u;
 end
 
 # ----------------------------------------------------------------
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # RESOLVEMOS EDO
-function resolveEDO(Problem,SpaceMethod,TimeMethod,N,x_range,tend,StateSaveat;θ=2.0)
-    N_FIELDS=1;
+function resolveEDO(Problem,SpaceMethod,TimeMethod,N,x_range,tend,StateSaveat;N_FIELDS=1,θ=2.0,CIfunction=oscillator_condition,CIpar=(1.0,1.0,1.0))
     start=x_range[1];stop=x_range[2];
     x=range(start,stop=stop,length=N+1)[1:end-1]; # de manera que no incluya el último punto
     Δx=Float64(x.step);
     h=1.0/Δx;
 
-    #Inicializamos el dato
-    u = Array{Float64}(undef,N,N_FIELDS);
-    #du = copy(u);
-    @. u[:,1] = 0.5 + sin(x);
+    u=CIfunction(N,N_FIELDS,x,CIpar);
 
     #Definimos el intervalo de integración y el paso Δt
     tspan = (0.0, tend);
@@ -65,6 +92,11 @@ function resolveEDO(Problem,SpaceMethod,TimeMethod,N,x_range,tend,StateSaveat;θ
         Flux_x! = burgers!;          # nombre de función flujo
         eqpars = false;              # parámetro
         println("Elegida la ecuación de Burgers");
+    elseif (Problem == :shallowwaters)
+        SpeedMax = shallowwatersspeed;  # nombre de función velocidad máxima
+        Flux_x! = shallowwaters;        # nombre de función flujo
+        eqpars = 9.81;                  # parámetro (aceleración de la gravedad)
+        println("Elegida la ecuación de Shallow Waters");
     end
 
     # Definimos parámetros según el método  de resolución espacial elegido
