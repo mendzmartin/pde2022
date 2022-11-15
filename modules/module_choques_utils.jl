@@ -185,6 +185,74 @@ function mp5!(dfields, fields, par, t) # j is the grid position
     
 end
 
+function mp5_ShallowWaterWhitTopology!(dfields, fields, par, t) # j is the grid position
+    #asumimos u unidimensional por ahora
+    par_eq, h, N, N_Fields, Fx!, Speed_max, auxvectors = par
+    F_Mm3, F_Mm2, F_Mm1, F_M, F_Mp1, F_Mp2, F_Mp3, F_Pm3, F_Pm2, F_Pm1, F_P, F_Pp1, F_Pp2, F_Pp3, F_LP, F_LM, F_RP, F_RM, H_m, H_p = auxvectors
+    
+
+    #nota: f minuscula o u se usa para hablar de campos, F mayúscula para hablar de Flujos.
+    
+    for idx in 1:N
+        #first we defined shifted indices
+        idxm3 = mod(((idx-3) - 1),N) + 1
+        idxm2 = mod(((idx-2) - 1),N) + 1
+        idxm1 = mod(((idx-1) - 1),N) + 1
+        idxp1 = mod(((idx+1) - 1),N) + 1
+        idxp2 = mod(((idx+2) - 1),N) + 1
+        idxp3 = mod(((idx+3) - 1),N) + 1
+        
+    
+        um3 = @view fields[idxm3,:]
+        um2 = @view fields[idxm2,:]
+        um1 = @view fields[idxm1,:]
+        u   = @view fields[idx,:]
+        up1 = @view fields[idxp1,:]
+        up2 = @view fields[idxp2,:]
+        up3 = @view fields[idxp3,:]
+        
+        S_MAX = max(Speed_max(up3, par_eq), Speed_max(um3, par_eq), 
+            Speed_max(up2, par_eq), Speed_max(um2, par_eq), Speed_max(up1, par_eq), 
+            Speed_max(um1, par_eq), Speed_max(u, par_eq)) #maximum speed
+        
+        xᵢ=idx*(1.0/h)
+        Fx!(F_Pm3, um3, par_eq,xᵢ)
+        Fx!(F_Pm2, um2, par_eq,xᵢ)
+        Fx!(F_Pm1, um1, par_eq,xᵢ)
+        Fx!(F_P, u, par_eq,xᵢ)
+        Fx!(F_Pp1, up1, par_eq,xᵢ)
+        Fx!(F_Pp2, up2, par_eq,xᵢ)
+        Fx!(F_Pp3, up3, par_eq,xᵢ)
+        
+        
+        @. F_Mm3 = 0.5 * (F_Pm3 - S_MAX * um3)
+        @. F_Mm2 = 0.5 * (F_Pm2 - S_MAX * um2)
+        @. F_Mm1 = 0.5 * (F_Pm1 - S_MAX * um1)
+        @. F_M   = 0.5 * (F_P   - S_MAX * u)
+        @. F_Mp1 = 0.5 * (F_Pp1 - S_MAX * up1)
+        @. F_Mp2 = 0.5 * (F_Pp2 - S_MAX * up2)
+        @. F_Mp3 = 0.5 * (F_Pp3 - S_MAX * up3)
+        @. F_Pm3 = 0.5 * (F_Pm3 + S_MAX * um3)
+        @. F_Pm2 = 0.5 * (F_Pm2 + S_MAX * um2)
+        @. F_Pm1 = 0.5 * (F_Pm1 + S_MAX * um1)
+        @. F_P   = 0.5 * (F_P   + S_MAX * u)
+        @. F_Pp1 = 0.5 * (F_Pp1 + S_MAX * up1)
+        @. F_Pp2 = 0.5 * (F_Pp2 + S_MAX * up2)
+        @. F_Pp3 = 0.5 * (F_Pp3 + S_MAX * up3)
+    
+        MP5reconstruction!(F_RM, F_Mp2, F_Mp1,  F_M,  F_Mm1, F_Mm2, N_Fields)
+        MP5reconstruction!(F_LM, F_Pm3, F_Pm2, F_Pm1, F_P,  F_Pp1, N_Fields)
+        MP5reconstruction!(F_LP, F_Pm2, F_Pm1,  F_P,  F_Pp1, F_Pp2, N_Fields)
+        MP5reconstruction!(F_RP, F_Mp3, F_Mp2, F_Mp1, F_M,  F_Mm1, N_Fields)
+        
+        @. H_p = F_LP + F_RP
+        @. H_m = F_LM + F_RM
+        
+        @. dfields[idx, :] = -h*(H_p - H_m)
+        
+    end
+end
+
 function createMP5auxvectors(N_FIELDS)
     F_P = Array{Float64}(undef, N_FIELDS)
     F_P = copy(F_P)

@@ -1,9 +1,12 @@
-name = "gridap_makie"
-uuid = "e9a0be11-c679-4b23-beb5-7bebd92e233f"
-authors = ["Oscar Reula <oreula@gmail.com>"]
-version = "0.1.0"
-
 [deps]
-Gridap = "56d4f2e9-7ea1-5844-9cf6-b9c51ca7ce8e"
+Arpack = "7d9fca2a-8960-54d3-9f78-7d1dccf2cb97"
+FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+Gmsh = "705231aa-382f-11e9-3f0c-b7cb4346fdeb"
+GridapGmsh = "3025c34a-b394-11e9-2a55-3fee550c04c8"
 GridapMakie = "41f30b06-6382-4b60-a5f7-79d86b35bf5d"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+SuiteSparse = "4607b0f0-06f3-5cda-b6b1-a6196a1729e9"
+WGLMakie = "276b4fcb-3e11-5398-bf8b-a0c2d153d008"
