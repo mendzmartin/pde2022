@@ -18,7 +18,12 @@ import Pkg; Pkg.activate("gridap_makie");
 
 using Gridap;
 using GridapGmsh;
+
+# import Pkg; Pkg.add("LineSearches")
 using LineSearches: BackTracking;
+
+# Pkg.add("IterativeSolvers")
+using IterativeSolvers
 
 # ----------------------------------------------------------------
 
@@ -57,7 +62,7 @@ end
     Linear solver phase
         https://gridap.github.io/Tutorials/dev/pages/t001_poisson/#Solver-phase-1
 =#
-function LU_solver()
+function LU_solver(params)
     ls = LUSolver(); solver = LinearFESolver(ls);
     return solver;
 end
@@ -69,8 +74,10 @@ end
         https://gridap.github.io/Tutorials/dev/pages/t008_inc_navier_stokes/#Nonlinear-solver-phase-1
         https://github.com/JuliaNLSolvers/NLsolve.jl
 =#
-function NL_solver()
-    nls = NLSolver(show_trace=true, method=:newton, linesearch=BackTracking(),ftol = 1e-16, iterations=5);
+function NL_solver(params)
+    method,tol,iter=params
+    # nls = NLSolver(show_trace=true, method=:newton, linesearch=BackTracking(),ftol = 1e-16, iterations=5);
+    nls = NLSolver(show_trace=true, method=method, linesearch=BackTracking(),ftol = tol, iterations=iter);
     solver = FESolver(nls);
     return solver;
 end
@@ -95,7 +102,7 @@ end
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ## FUNCIÓN PRINCIPAL PARA RESOLVER POISSON CON FEM
 
-function poisson_solver(TypeConf,MeasureDegree,BC,OrderIntFunct,TSSfunction,TSSfparams;TypeMesh="coarse",IntFunct=lagrangian,SolvFuntion=LU_solver,CreateDir=false)
+function poisson_solver(TypeConf,MeasureDegree,BC,OrderIntFunct,TSSfunction,TSSfparams;TypeMesh="coarse",IntFunct=lagrangian,SolvFunction=LU_solver,SolvFuncPar=(0.0),CreateDir=false)
 
     #=
     TypeConf        ≝ Type of Configuration (eg: 00,01,etc)
@@ -106,7 +113,8 @@ function poisson_solver(TypeConf,MeasureDegree,BC,OrderIntFunct,TSSfunction,TSSf
     TSSfparams      ≝ Parameters to TSSfunction variable
     TypeMesh        ≝ Type of mesh (eg: "fine", "coarse")
     IntFunct        ≝ Interpolation function (eg: Lagrangian)
-    SolvFuntion     ≝ Name of solver function (eg:LU_solver,NL_solver)
+    SolvFunction    ≝ Name of solver function (eg:LU_solver,NL_solver)
+    SolvFuncPar     ≝ Parameters to solver function
     CreateDir       ≝ Create directories (eg: false/true)
     =#
 
@@ -164,7 +172,7 @@ function poisson_solver(TypeConf,MeasureDegree,BC,OrderIntFunct,TSSfunction,TSSf
     op = AffineFEOperator(a,b,U,V0);
 
     # solve the problem
-    uh = solve(SolvFuntion(),op);
+    uh = solve(SolvFunction(SolvFuncPar),op);
 
     # save solution data
     if (BC == "full_dirichlet")

@@ -213,7 +213,7 @@ function make_model(grid_type,p)
     
     
     
-        if grid_type == "sphere" # ESTE TODAVÍA NO ANDA!
+    if grid_type == "sphere" # ESTE TODAVÍA NO ANDA!
     
         
         center_x, center_y, center_z, radious, lc = p
