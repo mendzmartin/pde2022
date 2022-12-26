@@ -38,11 +38,11 @@ end
 using Gridap;
 using GridapGmsh;
 using Gmsh;
-using Gridap.CellData; # para construir condición inicial interpolando una función conocida
-using Gridap.FESpaces; # para crear matrices afines a partir de formas bilineales
+using Gridap.CellData;  # para construir condición inicial interpolando una función conocida
+using Gridap.FESpaces;  # para crear matrices afines a partir de formas bilineales
+using Gridap.Algebra;   # para utilizar operaciones algebraicas con Gridap
 # using Gridap.Arrays
 # using Gridap.ReferenceFEs
-# using Gridap.Algebra
 
 using Plots;
 
@@ -66,6 +66,7 @@ end
 #= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++ Instalamos otros paquetes útiles
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ =#
+
 using Printf; # para imprimir salidas con formatos
 
 #= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -89,20 +90,26 @@ using Arpack;
 ++ Importamos módulos
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ =#
 
-include(path_modules*"module_eigen_multifield.jl");  # módulo para resolver problema de autovalores
+include(path_modules*"module_eigen_prototype.jl");  # módulo para resolver problema de autovalores
 include(path_models*"mesh_generator.jl"); # módulo para construir grilla (1D)
 
 #= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++ Seteo de variables globales
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ =#
+
 # declaramos parámetros constantes
-const m=1.0;const ω=1.0;const ħ=1.0;const x₁=0.0;const x₂=2.0;const γ=0.1;
-const α=im*ħ*0.5*(1.0/m);const αconst=-im*0.5*m*(ω*ω)*(1.0/ħ);const β=-im*γ*(1.0/ħ);
-const y₁=0.0;const y₂=2.0;
+const m=1.0;                            # masa
+const ω=1.0;                            # frecuencia angular
+const ħ=1.0;                            # constante de Planck
+const x₁=0.0;                           # posición donde se centra el 1er osc. armónico
+const x₂=2.0;                           # posición donde se centra el 2do osc. armónico
+const γ=0.1;                            # constante de acoplamiento
+const α=im*ħ*0.5*(1.0/m);               # factor multiplicativo energía cinética
+const αconst=-im*0.5*m*(ω*ω)*(1.0/ħ);   # factor multiplicativo potencial armónico
 
 @printf("VARIABLES GLOBALES:\n");
 @printf("m=%.4f (mass)\nω=%.4f (frecuency)\nħ=%.4f (Planck constant)\nγ=%.4f (coupling)\n",m,ω,ħ,γ);
-@printf("x₁=%.4f x₂=%.4f y₁=%.4f y₂=%.4f (QHO origin position)\n",x₁,x₂,y₁,y₂);
+@printf("x₁=%.4f x₂=%.4f (QHO origin position)\n",x₁,x₂);
 
 #= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++ Funciones útiles
@@ -132,16 +139,14 @@ rₕ(x) = 1.0;
 
 # Formas bilineales para problema de autovalores (espacios complejos)
 #  deben verificar la integración por partes
-function bilineal_forms(pfunc,qfunc,rfunc,dΩ)
-    a(u,v) = ∫(pfunc*∇(v)⋅∇(u)+qfunc*v*u)*dΩ;
-    b(u,v) = ∫(rfunc*u*v)dΩ;
+function bilineal_forms(p,q,r,dΩ)
+    a(u,v) = ∫(p*∇(v)⋅∇(u)+q*v*u)*dΩ;
+    b(u,v) = ∫(r*u*v)dΩ;
     return a,b;
 end
 
 # Formas bilineales para problema de autovalores (espacios real e imaginario separados)
 function bilineal_forms_ReImParts(p,q,r,dΩ)
-    # a((u₁,u₂),(v₁,v₂)) = ∫(p*(∇(v₁)⋅∇(u₁)+im*∇(v₂)⋅∇(u₂))+q*(v₁*u₁+im*v₂*u₂))dΩ;
-    # b((u₁,u₂),(v₁,v₂)) = ∫(r*(v₁*u₁+im*v₂*u₂))dΩ;
     a((u₁,u₂),(v₁,v₂)) = ∫(p*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))+q*(v₁*u₁+v₂*u₂))dΩ;
     b((u₁,u₂),(v₁,v₂)) = ∫(r*(v₁*u₁+v₂*u₂))dΩ;
     return a,b;
@@ -155,23 +160,6 @@ end
 # funciones para hamiltoniano 2x2 1D
 α₁(x)=αconst*(x[1]-x₁)*(x[1]-x₁); # oscilador armónico 1D centrado en x₁
 α₂(x)=αconst*(x[1]-x₂)*(x[1]-x₂); # oscilador armónico 1D centrado en x₂
-# para hamiltoniano 2x2 2D
-α₁_2D(x)=αconst*((x[1]-x₁)*(x[1]-x₁)+(x[2]-y₁)*(x[2]-y₁)); # oscilador armónico 2D centrado en (x₁,y₁)
-α₂_2D(x)=αconst*((x[1]-x₂)*(x[1]-x₂)+(x[2]-y₂)*(x[2]-y₂)); # oscilador armónico 2D centrado en (x₁,y₁)
-
-
-# Formas bilineales para problema de autovalores
-#  deben verificar la integración por partes
-function a_bilineal_forms_2D(α₁,α₂,Δt,dΩ)
-    a((u₁,u₂),(v₁,v₂))=∫((2-β)*(u₁*v₁+u₂*v₂)-(α₁*u₁*v₁+α₂*u₂*v₂)-α*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))*Δt)*dΩ
-    # a((u₁,u₂),(v₁,v₂))=∫((2+β)*(u₁*v₁+u₂*v₂)+(α₁*u₁*v₁+α₂*u₂*v₂)+α*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))*Δt)*dΩ
-    return a;
-end
-function b_bilineal_form_2D(α₁,α₂,u₀₁,u₀₂,Δt,dΩ)
-    b((v₁,v₂))=∫((2+β)*(u₀₁*v₁+u₀₂*v₂)+(α₁*u₀₁*v₁+α₂*u₀₂*v₂)+α*(∇(v₁)⋅∇(u₀₁)+∇(v₂)⋅∇(u₀₂))*Δt)*dΩ
-    # b(v₁,v₂)=∫((2-β)*(u₀₁*v₁+u₀₂*v₂)-(α₁*u₀₁*v₁+α₂*u₀₂*v₂)-α*(∇(v₁)⋅∇(u₀₁)+∇(v₂)⋅∇(u₀₂))*Δt)*dΩ
-    return b;
-end
 
 #= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++ Funciones útiles para el problema de autovalores completo
@@ -184,40 +172,27 @@ qH₂(x) = 0.5*m*(ω*ω)*(x[1]-x₂)*(x[1]-x₂);                           # os
 rH(x) = 1.0;
 sH(x) = γ;
 
-function bilineal_forms_eigenprob_H(pfunc,q₁func,q₂func,rfunc,sfunc,dΩ)
-    a((u₁,u₂),(v₁,v₂)) = ∫(pfunc*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))+q₁func*v₁*u₁+q₂func*v₂*u₂+sfunc*(v₁*u₁+v₂*u₂))*dΩ;
-    b((u₁,u₂),(v₁,v₂)) = ∫(rfunc*(v₁*u₁+v₂*u₂))dΩ;
+function bilineal_forms_eigenprob_H(p,q₁,q₂,r,s,dΩ)
+    a((u₁,u₂),(v₁,v₂)) = ∫(p*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))+q₁*v₁*u₁+q₂*v₂*u₂+s*(v₁*u₁+v₂*u₂))*dΩ;
+    b((u₁,u₂),(v₁,v₂)) = ∫(r*(v₁*u₁+v₂*u₂))dΩ;
     return a,b;
 end
-
-function bilinformsReIm_EigenProbH(p,q,s,dΩ)
-    a((u₁,u₂),(v₁,v₂))=∫(p*(∇(v₁)⋅∇(u₁))+q*(v₁*u₁)+s*(v₂*u₂))*dΩ;
-    b((u₁,v₁))=∫(r*(v₁*u₁))*dΩ;
-    return a,b;
-end
-
-#=
-    a₁((u₁,u₃),(v₁,v₃))=∫(p*(∇(v₁)⋅∇(u₁))+q₁*(v₁*u₁)+s*(v₃*u₃))*dΩ;
-    b₁((u₁,v₁))
-    a₂((u₂,u₄),(v₂,v₄))=∫(p*(∇(v₂)⋅∇(u₂))+q₁*(v₂*u₂)+s*(v₄*u₄))*dΩ;
-    b₂((u₂,v₂))
-    a₃((u₃,u₁),(v₃,v₁))=∫(p*(∇(v₃)⋅∇(u₃))+q₂*(v₃*u₃)+s*(v₁*u₁))*dΩ;
-    b₃((u₃,v₃))
-    a₄((u₄,u₂),(v₄,v₂))=∫(p*(∇(v₄)⋅∇(u₄))+q₂*(v₄*u₄)+s*(v₂*u₂))*dΩ;
-    b₄((u₄,v₄))
-=#
 
 function bilineal_forms_eigenprob_H_ReImParts(p,q₁,q₂,r,s,dΩ)
 
+    # parte real de la 1er coordenada
     a₁((u₁,u₃),(v₁,v₃))=∫(p*(∇(v₁)⋅∇(u₁))+q₁*(v₁*u₁)+s*(v₃*u₃))*dΩ;
     b₁((u₁,v₁))=∫(r*(v₁*u₁))*dΩ;
 
+    # parte imaginaria de la 1er coordenada
     a₂((u₂,u₄),(v₂,v₄))=∫(p*(∇(v₂)⋅∇(u₂))+q₁*(v₂*u₂)+s*(v₄*u₄))*dΩ;
     b₂((u₂,v₂))=∫(r*(v₂*u₂))*dΩ;
 
+    # parte real de la 2da coordenada
     a₃((u₃,u₁),(v₃,v₁))=∫(p*(∇(v₃)⋅∇(u₃))+q₂*(v₃*u₃)+s*(v₁*u₁))*dΩ;
     b₃((u₃,v₃))=∫(r*(v₃*u₃))*dΩ;
 
+    # parte imaginaria de la 2da coordenada
     a₄((u₄,u₂),(v₄,v₂))=∫(p*(∇(v₄)⋅∇(u₄))+q₂*(v₄*u₄)+s*(v₂*u₂))*dΩ;
     b₄((u₄,v₄))=∫(r*(v₄*u₄))*dΩ;
 

@@ -132,9 +132,9 @@ rₕ(x) = 1.0;
 
 # Formas bilineales para problema de autovalores
 #  deben verificar la integración por partes
-function bilineal_forms(pfunc,qfunc,rfunc,dΩ)
-    a(u,v) = ∫(pfunc*∇(v)⋅∇(u)+qfunc*v*u)*dΩ;
-    b(u,v) = ∫(rfunc*u*v)dΩ;
+function bilineal_forms(p,q,r,dΩ)
+    a(u,v) = ∫(p*(∇(v)⋅∇(u))+q*(v*u))dΩ;
+    b(u,v) = ∫(r*(u*v))dΩ;
     return a,b;
 end
 
@@ -154,13 +154,16 @@ end
 # Formas bilineales para problema de autovalores
 #  deben verificar la integración por partes
 function a_bilineal_forms_2D(α₁,α₂,Δt,dΩ)
-    a((u₁,u₂),(v₁,v₂))=∫((2-β)*(u₁*v₁+u₂*v₂)-(α₁*u₁*v₁+α₂*u₂*v₂)-α*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))*Δt)*dΩ
-    # a((u₁,u₂),(v₁,v₂))=∫((2+β)*(u₁*v₁+u₂*v₂)+(α₁*u₁*v₁+α₂*u₂*v₂)+α*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))*Δt)*dΩ
+    a₁((u₁,u₂),(v₁,v₂))=∫(2*(u₁*v₁)-(α*(∇(v₁)⋅∇(u₁))+α₁*(u₁*v₁)+β*(u₂*v₂))*Δt)dΩ
+    a₂((u₂,u₁),(v₂,v₁))=∫(2*(u₂*v₂)-(α*(∇(v₂)⋅∇(u₂))+α₂*(u₂*v₂)+β*(u₁*v₁))*Δt)dΩ
+    a((u₁,u₂),(v₁,v₂))=a₁((u₁,u₂),(v₁,v₂))+a₂((u₂,u₁),(v₂,v₁))
     return a;
 end
+
 function b_bilineal_form_2D(α₁,α₂,u₀₁,u₀₂,Δt,dΩ)
-    b((v₁,v₂))=∫((2+β)*(u₀₁*v₁+u₀₂*v₂)+(α₁*u₀₁*v₁+α₂*u₀₂*v₂)+α*(∇(v₁)⋅∇(u₀₁)+∇(v₂)⋅∇(u₀₂))*Δt)*dΩ
-    # b(v₁,v₂)=∫((2-β)*(u₀₁*v₁+u₀₂*v₂)-(α₁*u₀₁*v₁+α₂*u₀₂*v₂)-α*(∇(v₁)⋅∇(u₀₁)+∇(v₂)⋅∇(u₀₂))*Δt)*dΩ
+    b₁((v₁,v₂))=∫(2*(u₀₁*v₁)+(α*(∇(v₁)⋅∇(u₀₁))+α₁*(u₀₁*v₁)+β*(u₀₂*v₂))*Δt)dΩ
+    b₂((v₂,v₁))=∫(2*(u₀₂*v₂)+(α*(∇(v₂)⋅∇(u₀₂))+α₂*(u₀₂*v₂)+β*(u₀₁*v₁))*Δt)dΩ
+    b((v₁,v₂))=b₁((v₁,v₂))+b₂((v₂,v₁))
     return b;
 end
 
