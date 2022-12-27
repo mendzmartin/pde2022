@@ -166,20 +166,3 @@ function b_bilineal_form_2D(α₁,α₂,u₀₁,u₀₂,Δt,dΩ)
     b((v₁,v₂))=b₁((v₁,v₂))+b₂((v₂,v₁))
     return b;
 end
-
-#= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++ Funciones útiles para el problema de autovalores completo
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ =#
-
-# funciones para problema de autovalores (Ec. de Sturm Liouville)
-pH(x) = 0.5*(ħ*ħ)*(1.0/m);                                          # factor para energía cinética
-qH₁(x) = 0.5*m*(ω*ω)*(x[1]-x₁)*(x[1]-x₁);                           # oscilador armónico 1D centrado en x₁
-qH₂(x) = 0.5*m*(ω*ω)*(x[1]-x₂)*(x[1]-x₂);                           # oscilador armónico 1D centrado en x₂
-rH(x) = 1.0;
-sH(x) = γ;
-
-function bilineal_forms_eigenprob_H(pfunc,q₁func,q₂func,rfunc,sfunc,dΩ)
-    a((u₁,u₂),(v₁,v₂)) = ∫(pfunc*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))+q₁func*v₁*u₁+q₂func*v₂*u₂+sfunc*(v₁*u₁+v₂*u₂))*dΩ;
-    b((u₁,u₂),(v₁,v₂)) = ∫(rfunc*(v₁*u₁+v₂*u₂))dΩ;
-    return a,b;
-end
