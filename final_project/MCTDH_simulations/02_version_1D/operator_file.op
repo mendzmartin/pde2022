@@ -1,0 +1,60 @@
+##################COMENTARIOS#################################
+## sección de definición
+##############################################################
+OP_DEFINE-SECTION
+	title
+		H = QHO 1D + V(x)
+	end-title
+end-op_define-section
+
+##################COMENTARIOS#################################
+## sección de parámetros
+##############################################################
+PARAMETER-SECTION
+	mass_X1	= 1.d0, au	# masa asociada a DOF 1
+	gamma	= 0.1 	# constante de interacción
+end-parameter-section
+
+##################COMENTARIOS#################################
+## sección de etiquetas
+############################################################## 
+LABELS-SECTION
+	QHO2 = q[2]^2	# (x-2)²
+end-labels-section
+
+##################COMENTARIOS#################################
+## Construimos el operador hamiltoniano del sistema H(x), donde
+##  el parámetrto X1 al grados de libertad del sistema, en este
+##  caso, la coordenada x de la función de onda del sistema.
+############################################################## 
+HAMILTONIAN-SECTION
+	-----------------------------------------------------
+	modes	|	X
+	-----------------------------------------------------
+	# Kinetic energy
+	1.0		|	KE
+	# Harmonic trap
+	0.5		|	q^2
+	0.5		|	QHO2
+	# Interaction
+	1.0		|	gamma
+	----------------------------------------------------
+end-hamiltonian-section
+
+##################COMENTARIOS#################################
+## Construimos el operador hamiltoniano individual h1(x), en
+##  este caso, tendremos un oscilador armónico unidimensional
+##  centrado en el origen
+############################################################## 
+HAMILTONIAN-SECTION_h1
+	-----------------------------------------------------
+	modes	|	X
+	-----------------------------------------------------
+	# Kinetic energy
+	1.0		|	KE
+	# Harmonic trap
+	0.5		|	q^2
+	----------------------------------------------------
+end-hamiltonian-section
+
+end-operator

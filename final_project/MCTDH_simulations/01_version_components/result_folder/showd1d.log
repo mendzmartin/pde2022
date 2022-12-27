@@ -1,0 +1,25 @@
+
+--------------------------------------------------------------------------------
+****** Source code version ******
+
+Program Version :     8
+Release         :     6
+Revision        :     2
+
+Heidelberg SVN repository no.: 1397
+Checkin date: Wed, 18 May 2022, 11:24:00
+Compiled: Thu, 15 Sep 2022, 15:31:16 ; Host: mendez-famaf
+Program name: showd1d86
+--------------------------------------------------------------------------------
+
+  *** Memory allocated dynamically ***
+ real*8     :     1629911
+ real*4     :        1804
+ Total   : 13046504 Bytes ,      12.44 MB
+--------------------------------------------------------------------------------
+
+gridpop : /home/mendez/github_repositories/my_repositories/pde2022/final_project/MCTDH_simulations/01_version_components/result_folder/gridpop
+dvr     : /home/mendez/github_repositories/my_repositories/pde2022/final_project/MCTDH_simulations/01_version_components/result_folder/dvr
+output  : /home/mendez/github_repositories/my_repositories/pde2022/final_project/MCTDH_simulations/01_version_components/result_folder/den1d_f2
+--------------------------------------------------------------------------------
+

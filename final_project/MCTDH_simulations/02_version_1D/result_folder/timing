@@ -1,0 +1,22 @@
+ Subroutine           Calls N         cpu/N             cpu       %cpu      real/N          real  cpu/real
+
+ Funk-X                231976         0.001         262.1000      96.8
+ BS                      4396         0.059         260.5900      96.2
+ Startup                    1         5.000           5.0000       1.8
+ initWF                     1         2.790           2.7900       1.0
+ genDVR                     1         1.890           1.8900       0.7
+ genOPER                    1         0.320           0.3200       0.1
+ Funk1                    100         0.001           0.0900       0.0
+ Output                    51         0.002           0.0800       0.0
+ Funk2                     51         0.000           0.0200       0.0
+ Funk3                     51         0.000           0.0200       0.0
+ SIL                      150         0.000           0.0100       0.0
+ Funk0                     50         0.000           0.0100       0.0
+ Funka                     50         0.000           0.0100       0.0
+
+Total (usr,sys,cpu)     260.61    10.17     270.78   (  0h :  4m : 30.78s)
+
+ ---------------------------------------------------------------------------
+ ------ Host: "mendez-famaf" ----------Tue Dec 27 16:21:56 2022
+
+ /home/mendez/Documents/pde/version02/result_folder

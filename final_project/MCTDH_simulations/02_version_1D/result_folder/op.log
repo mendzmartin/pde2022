@@ -1,0 +1,103 @@
+WARNING: Mass for DOF   1 not set. Set to 1 by default.
+
+******* Array-Dimensions *******
+
+ k   :  minkoe, maxkoe       8    4000
+ h   :  htmdim, maxhtm      12    4000
+ hl  :  hopdim, maxhop      10    4000
+ nh  :  minfac, maxfac      12     200
+ n   :    ndef, maxdef      85     240
+ n   :    npar, maxpar       3     300
+ n   :    nrdf, maxrdf       0      16
+ np  : npesopt, maxpes       0     100
+ nham:  hamdim, maxham       2      10
+ muld: mulddim,maxmuld       0      10
+ LMR :    iLMR, maxLMR       0      20
+ minnhtmshift,maxnhtmshift     0    10
+ (for minedim, maxedim see log file)
+
+***** Operator details *****
+
+ndof   =   1 ,  nmode   =   1
+nopdof =   2 ,  nopmode =   2
+feb =  0,  meb =  0,   fpb =  0,  mpb =  0,  mkoe =  2
+leb = F,  lmult = F,  lmulpack = F,  lcap = F
+
+DOF no.    label
+    1       X
+- - - - - - - - - - - - - - -
+    2       Koeff
+
+Mode     DOFs
+   1    1=       X
+- - - - - - - - - - - - - - -
+   2    2=   Koeff
+
+Number of Hamiltonians defined:     2
+    1     system                usediag
+    2     h1                    usediag
+
+Information for Hamiltonian : System
+
+Total no. of terms      :      1
+No. of correlated terms :      0
+
+No. of uncorrelated terms for mode   1:     1
+
+Information for Hamiltonian : h1
+
+Total no. of terms      :      1
+No. of correlated terms :      0
+
+No. of uncorrelated terms for mode   1:     1
+
+  Parameters
+PI                      3.141592653590
+gamma                   0.100000000000
+mass_X1                 1.000000000000
+
+Number of operators removed =     0,  cutoff = 1.00E-09
+
+  Operator Labels    [hl,hoplab,(deflabel),hopilab,hopfile]
+    hl  Label                         function no.  file no.
+     1  1                                       1       302
+     2  -1                                      2       302
+     3  I                                       1       101
+     4  KEdvr                                   5         3
+     5  0.5                                     0       301
+     6  q^2                                     3       302
+     7  q[1]^2               QHO2               3       302
+     8  gamma                                   2       301
+
+Hamiltonian Operator Terms [h,htmdof,htmadof,htmndof,htmmode,htmmuld,htmtype,
+                            htmsym,htmshift,string]
+   No.   f  af  nf   m  md Typ Sym   Shift      Term
+     2   K           0   0   1   1            1
+     8   1   1   0   0   0   8   1       0    KEdvr + q^2*0.5 + q[1]^2*0.5 + gamma
+     9   1   1   0   0   0   8   1       0    KEdvr + q^2*0.5
+
+Arguments for operators
+  No.    Arguments
+    1    2.0000000        0.0000000        0.0000000        0.0000000    
+
+********* System Hamiltonian ***********
+
+Terms
+     k   m   s  sym coeff   No.s
+     1   1   1   1    2       8
+
+The operator is REAL and HERMITIAN
+
+------------------------------------------------------------------------------
+
+
+********* h1 Hamiltonian ***********
+
+Terms
+     k   m   s  sym coeff   No.s
+     2   1   1   1    2       9
+
+The operator is REAL and HERMITIAN
+
+------------------------------------------------------------------------------
+

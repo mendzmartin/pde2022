@@ -1,0 +1,85 @@
+# /home/mendez/Documents/pde/version02/input_file.inp
+                ### ------- INPUT FILE ------- ###
+
+RUN-SECTION
+	name=result_folder
+	propagation
+	#geninwf
+	time-not-fs
+usepthreads = 4, summf2,no-funkphi
+ptiming		# Check ptiming file to control overload, and include
+			# no-* keywords accordingly to suppress inefficiently
+			# parallelized routines.
+	tfinal = 5 tout = 0.1 tpsi = 0.1
+	steps
+	gridpop # para showd1d
+	pdensity # particle density file. Useful to compute quantities after run.
+	veigen
+	psi
+	auto
+	#energy-not-ev
+end-run-section
+OPERATOR-SECTION
+	opname=operator_file
+end-operator-section
+SBASIS-SECTION
+	X = 1
+end-sbasis-section
+PBASIS-SECTION
+	X	sin	901	-25.0	25.0	short
+end-pbasis-section
+INTEGRATOR-SECTION
+	CMF/var	=	0.1	,	1d-9 # Initial step size, accuracy.
+	BS/spf	=	9	,	1d-9 # Order, accuracy, initial step.
+	SIL/A	=	10	,	1d-9 # Order, accuracy.
+end-integrator-section
+INIT_WF-SECTION
+	build
+		X eigenf h1 pop=1		# el DOF X comienza en un autoestado de h1(x)
+	end-build
+end-init_wf-section
+end-input
+
+ -mnd -w -p gamma 0.1 
+
+#******************************************************************************#
+                ### ------ OPERATOR FILE ------ ###
+
+OP_DEFINE-SECTION
+	title
+		H = QHO 1D + V(x)
+	end-title
+end-op_define-section
+PARAMETER-SECTION
+	mass_X1	= 1.d0, au	# masa asociada a DOF 1
+	gamma	= 0.1 	# constante de interacción
+end-parameter-section
+LABELS-SECTION
+	QHO2 = q[2]^2	# (x-2)²
+end-labels-section
+HAMILTONIAN-SECTION
+	-----------------------------------------------------
+	modes	|	X
+	-----------------------------------------------------
+	# Kinetic energy
+	1.0		|	KE
+	# Harmonic trap
+	0.5		|	q^2
+	0.5		|	QHO2
+	# Interaction
+	1.0		|	gamma
+	----------------------------------------------------
+end-hamiltonian-section
+HAMILTONIAN-SECTION_h1
+	-----------------------------------------------------
+	modes	|	X
+	-----------------------------------------------------
+	# Kinetic energy
+	1.0		|	KE
+	# Harmonic trap
+	0.5		|	q^2
+	----------------------------------------------------
+end-hamiltonian-section
+end-operator
+
+#******************************************************************************#

@@ -1,0 +1,532 @@
+
+*******************************************************************************
+                               MCTDH version  8
+                                  Release     6
+                                  Revision    2
+*******************************************************************************
+
+ ------ Host: "mendez-famaf" ----------Tue Dec 27 16:17:18 2022
+
+ /home/mendez/Documents/pde/version02/result_folder
+------------------------------------------------------------------------------
+ time-not-fs is set!
+
+ Time  =       0.00 au,       CPU =        5.12 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=  -0.0000  <dq>=   0.7071  <n>=   8.0111  <dn>=   6.7834
+------------------------------------------------------------------------------
+
+ Time  =       0.10 au,       CPU =        8.90 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.0100  <dq>=   0.7036  <n>=   8.4513  <dn>=   7.1081
+------------------------------------------------------------------------------
+
+ Time  =       0.20 au,       CPU =       14.15 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.0397  <dq>=   0.6932  <n>=   9.6718  <dn>=   7.9292
+------------------------------------------------------------------------------
+
+ Time  =       0.30 au,       CPU =       19.34 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.0887  <dq>=   0.6765  <n>=  11.4318  <dn>=   8.9695
+------------------------------------------------------------------------------
+
+ Time  =       0.40 au,       CPU =       24.87 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.1558  <dq>=   0.6544  <n>=  13.4636  <dn>=  10.0378
+------------------------------------------------------------------------------
+
+ Time  =       0.50 au,       CPU =       30.37 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.2398  <dq>=   0.6281  <n>=  15.5443  <dn>=  11.0428
+------------------------------------------------------------------------------
+
+ Time  =       0.60 au,       CPU =       35.74 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.3389  <dq>=   0.5994  <n>=  17.5112  <dn>=  11.9431
+------------------------------------------------------------------------------
+
+ Time  =       0.70 au,       CPU =       41.05 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.4513  <dq>=   0.5703  <n>=  19.2508  <dn>=  12.7149
+------------------------------------------------------------------------------
+
+ Time  =       0.80 au,       CPU =       46.59 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.5746  <dq>=   0.5434  <n>=  20.6843  <dn>=  13.3402
+------------------------------------------------------------------------------
+
+ Time  =       0.90 au,       CPU =       51.60 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.7064  <dq>=   0.5211  <n>=  21.7574  <dn>=  13.8042
+------------------------------------------------------------------------------
+
+ Time  =       1.00 au,       CPU =       56.82 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.8441  <dq>=   0.5060  <n>=  22.4338  <dn>=  14.0954
+------------------------------------------------------------------------------
+
+ Time  =       1.10 au,       CPU =       62.18 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.9848  <dq>=   0.5001  <n>=  22.6922  <dn>=  14.2065
+------------------------------------------------------------------------------
+
+ Time  =       1.20 au,       CPU =       67.41 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.1259  <dq>=   0.5039  <n>=  22.5249  <dn>=  14.1345
+------------------------------------------------------------------------------
+
+ Time  =       1.30 au,       CPU =       72.75 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.2645  <dq>=   0.5172  <n>=  21.9368  <dn>=  13.8815
+------------------------------------------------------------------------------
+
+ Time  =       1.40 au,       CPU =       78.19 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.3978  <dq>=   0.5381  <n>=  20.9463  <dn>=  13.4537
+------------------------------------------------------------------------------
+
+ Time  =       1.50 au,       CPU =       83.58 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.5231  <dq>=   0.5643  <n>=  19.5861  <dn>=  12.8619
+------------------------------------------------------------------------------
+
+ Time  =       1.60 au,       CPU =       88.95 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.6380  <dq>=   0.5931  <n>=  17.9065  <dn>=  12.1200
+------------------------------------------------------------------------------
+
+ Time  =       1.70 au,       CPU =       94.26 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.7402  <dq>=   0.6221  <n>=  15.9802  <dn>=  11.2455
+------------------------------------------------------------------------------
+
+ Time  =       1.80 au,       CPU =       99.42 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.8276  <dq>=   0.6490  <n>=  13.9121  <dn>=  10.2603
+------------------------------------------------------------------------------
+
+ Time  =       1.90 au,       CPU =      105.01 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.8984  <dq>=   0.6722  <n>=  11.8532  <dn>=   9.2003
+------------------------------------------------------------------------------
+
+ Time  =       2.00 au,       CPU =      110.24 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.9514  <dq>=   0.6901  <n>=  10.0133  <dn>=   8.1419
+------------------------------------------------------------------------------
+
+ Time  =       2.10 au,       CPU =      115.65 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.9853  <dq>=   0.7019  <n>=   8.6544  <dn>=   7.2516
+------------------------------------------------------------------------------
+
+ Time  =       2.20 au,       CPU =      120.81 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.9995  <dq>=   0.7069  <n>=   8.0321  <dn>=   6.7987
+------------------------------------------------------------------------------
+
+ Time  =       2.30 au,       CPU =      125.95 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.9938  <dq>=   0.7049  <n>=   8.2852  <dn>=   6.9870
+------------------------------------------------------------------------------
+
+ Time  =       2.40 au,       CPU =      131.35 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.9683  <dq>=   0.6960  <n>=   9.3555  <dn>=   7.7255
+------------------------------------------------------------------------------
+
+ Time  =       2.50 au,       CPU =      136.57 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.9234  <dq>=   0.6806  <n>=  11.0230  <dn>=   8.7392
+------------------------------------------------------------------------------
+
+ Time  =       2.60 au,       CPU =      141.97 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.8601  <dq>=   0.6595  <n>=  13.0173  <dn>=   9.8119
+------------------------------------------------------------------------------
+
+ Time  =       2.70 au,       CPU =      147.19 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.7796  <dq>=   0.6340  <n>=  15.1031  <dn>=  10.8350
+------------------------------------------------------------------------------
+
+ Time  =       2.80 au,       CPU =      152.58 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.6835  <dq>=   0.6056  <n>=  17.1054  <dn>=  11.7601
+------------------------------------------------------------------------------
+
+ Time  =       2.90 au,       CPU =      157.85 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.5738  <dq>=   0.5765  <n>=  18.9013  <dn>=  12.5612
+------------------------------------------------------------------------------
+
+ Time  =       3.00 au,       CPU =      163.27 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.4527  <dq>=   0.5488  <n>=  20.4058  <dn>=  13.2193
+------------------------------------------------------------------------------
+
+ Time  =       3.10 au,       CPU =      168.44 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.3225  <dq>=   0.5254  <n>=  21.5597  <dn>=  13.7189
+------------------------------------------------------------------------------
+
+ Time  =       3.20 au,       CPU =      173.87 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.1858  <dq>=   0.5086  <n>=  22.3234  <dn>=  14.0479
+------------------------------------------------------------------------------
+
+ Time  =       3.30 au,       CPU =      179.14 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   1.0455  <dq>=   0.5005  <n>=  22.6726  <dn>=  14.1980
+------------------------------------------------------------------------------
+
+ Time  =       3.40 au,       CPU =      184.49 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.9042  <dq>=   0.5023  <n>=  22.5965  <dn>=  14.1654
+------------------------------------------------------------------------------
+
+ Time  =       3.50 au,       CPU =      189.69 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.7649  <dq>=   0.5136  <n>=  22.0976  <dn>=  13.9508
+------------------------------------------------------------------------------
+
+ Time  =       3.60 au,       CPU =      195.18 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.6302  <dq>=   0.5331  <n>=  21.1911  <dn>=  13.5597
+------------------------------------------------------------------------------
+
+ Time  =       3.70 au,       CPU =      200.67 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.5029  <dq>=   0.5584  <n>=  19.9067  <dn>=  13.0020
+------------------------------------------------------------------------------
+
+ Time  =       3.80 au,       CPU =      206.05 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.3856  <dq>=   0.5868  <n>=  18.2902  <dn>=  12.2910
+------------------------------------------------------------------------------
+
+ Time  =       3.90 au,       CPU =      211.32 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.2805  <dq>=   0.6160  <n>=  16.4092  <dn>=  11.4433
+------------------------------------------------------------------------------
+
+ Time  =       4.00 au,       CPU =      216.79 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.1898  <dq>=   0.6435  <n>=  14.3607  <dn>=  10.4796
+------------------------------------------------------------------------------
+
+ Time  =       4.10 au,       CPU =      222.01 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.1153  <dq>=   0.6676  <n>=  12.2842  <dn>=   9.4312
+------------------------------------------------------------------------------
+
+ Time  =       4.20 au,       CPU =      227.54 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.0584  <dq>=   0.6868  <n>=  10.3766  <dn>=   8.3624
+------------------------------------------------------------------------------
+
+ Time  =       4.30 au,       CPU =      232.81 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.0203  <dq>=   0.7000  <n>=   8.8912  <dn>=   7.4161
+------------------------------------------------------------------------------
+
+ Time  =       4.40 au,       CPU =      238.17 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.0018  <dq>=   0.7065  <n>=   8.0935  <dn>=   6.8455
+------------------------------------------------------------------------------
+
+ Time  =       4.50 au,       CPU =      243.71 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.0033  <dq>=   0.7060  <n>=   8.1567  <dn>=   6.8928
+------------------------------------------------------------------------------
+
+ Time  =       4.60 au,       CPU =      249.12 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.0246  <dq>=   0.6985  <n>=   9.0664  <dn>=   7.5347
+------------------------------------------------------------------------------
+
+ Time  =       4.70 au,       CPU =      254.58 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.0654  <dq>=   0.6844  <n>=  10.6287  <dn>=   8.5116
+------------------------------------------------------------------------------
+
+ Time  =       4.80 au,       CPU =      259.96 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =  -0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.1248  <dq>=   0.6644  <n>=  12.5747  <dn>=   9.5838
+------------------------------------------------------------------------------
+
+ Time  =       4.90 au,       CPU =      265.25 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.2018  <dq>=   0.6398  <n>=  14.6578  <dn>=  10.6229
+------------------------------------------------------------------------------
+
+ Time  =       5.00 au,       CPU =      270.78 s,    Norm    = 1.00000000
+ E-tot =  77.552444 eV,    E-corr =   0.000000 eV,    Delta-E =     0.0000 meV
+
+ Natural weights *1000 :
+X           :1000.0000
+
+ Mode expectation values and variances :
+X           : <q>=   0.2947  <dq>=   0.6119  <n>=  16.6899  <dn>=  11.5716
+------------------------------------------------------------------------------
+
+Propagation was successful.
+
+Total time     [h:m:s] :    0 :  4 : 30.78
+Wall  time     [h:m:s] :    0 :  4 : 38
+
+ ---------------------------------------------------------------------------
+ ------ Host: "mendez-famaf" ----------Tue Dec 27 16:21:56 2022
+
+ /home/mendez/Documents/pde/version02/result_folder
