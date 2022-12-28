@@ -13,13 +13,13 @@ Program name: showd1d86
 --------------------------------------------------------------------------------
 
   *** Memory allocated dynamically ***
- real*8     :     1629911
- real*4     :        1804
- Total   : 13046504 Bytes ,      12.44 MB
+ real*8     :      505511
+ real*4     :        1004
+ Total   :  4048104 Bytes ,       3.86 MB
 --------------------------------------------------------------------------------
 
-gridpop : /home/mendez/github_repositories/my_repositories/pde2022/final_project/MCTDH_simulations/01_version_components/result_folder/gridpop
-dvr     : /home/mendez/github_repositories/my_repositories/pde2022/final_project/MCTDH_simulations/01_version_components/result_folder/dvr
-output  : /home/mendez/github_repositories/my_repositories/pde2022/final_project/MCTDH_simulations/01_version_components/result_folder/den1d_f2
+gridpop : /home/mendez/Documents/pde/version01/result_folder/gridpop
+dvr     : /home/mendez/Documents/pde/version01/result_folder/dvr
+output  : /home/mendez/Documents/pde/version01/result_folder/den1d_f2
 --------------------------------------------------------------------------------
 

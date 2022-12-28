@@ -27,8 +27,8 @@ SBASIS-SECTION
 	X2	=	id,1
 end-sbasis-section
 PBASIS-SECTION
-	X1	sin	901	-25.0	25.0	short
-	X2	sin	901	-25.0	25.0	short
+	X1	sin	501	-25.0	25.0	short
+	X2	sin	501	-25.0	25.0	short
 end-pbasis-section
 INTEGRATOR-SECTION
 	CMF/var	=	0.1	,	1d-6 # Initial step size, accuracy.
@@ -37,7 +37,7 @@ INTEGRATOR-SECTION
 end-integrator-section
 INIT_WF-SECTION
 	build
-		X1 HO 0.0 0.0 0.0		# el DOF X1 comienza en cero
+		X1 eigenf hzero pop=1
 		X2 eigenf h1 pop=1		# el DOF X2 comienza en un autoestado de h1(x)
 	end-build
 end-init_wf-section
@@ -64,17 +64,27 @@ HAMILTONIAN-SECTION
 	-----------------------------------------------------
 	modes	|	X1		|	X2
 	-----------------------------------------------------
+	# kinetic energy
 	1.0		|	KE		|	1
 	1.0		|	1		|	KE
+	# harmonic trap
 	0.5		|	q^2		|	1
 	0.5		|	1		|	QHO2
-	1.0		|	gamma	|	1
-	1.0		|	1		|	gamma
+	# interaction potential
+	gamma	|1&2 1
 	----------------------------------------------------
 end-hamiltonian-section
 HAMILTONIAN-SECTION_h1
 	-----------------------------------------------------
 	modes	|	X2
+	-----------------------------------------------------
+	1.0		|	KE
+	0.5		|	q^2
+	----------------------------------------------------
+end-hamiltonian-section
+HAMILTONIAN-SECTION_hzero
+	-----------------------------------------------------
+	modes	|	X1
 	-----------------------------------------------------
 	1.0		|	KE
 	0.5		|	q^2

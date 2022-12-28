@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+
+------ Host: "mendez-famaf" ----------Wed Dec 28 08:42:18 2022
+
+ The log file is : /home/mendez/Documents/pde/version01/result_folder/showsys.log
+ The DVR file is : /home/mendez/Documents/pde/version01/result_folder/dvr
+ The psi file is : /home/mendez/Documents/pde/version01/result_folder/psi
+
+--------------------------------------------------------------------------------
+****** Source code version ******
+
+Program Version :     8
+Release         :     6
+Revision        :     2
+
+Heidelberg SVN repository no.: 1397
+Checkin date: Wed, 18 May 2022, 11:24:00
+Compiled: Thu, 15 Sep 2022, 15:31:16 ; Host: mendez-famaf
+Program name: showsys86
+--------------------------------------------------------------------------------
+
+  *** Memory allocated dynamically ***
+ complex*16 :       10249
+ real*8     :   128512514
+ integer    :           4
+ complex*8  :        5112
+ Total   :     1028305248. Bytes ,     980.67 MB
+--------------------------------------------------------------------------------
+

@@ -62,8 +62,8 @@ end-sbasis-section
 ## 	short/long nos dice si los pts extremos estan incluidos o no en la grilla
 #############################################################
 PBASIS-SECTION
-	X1	sin	901	-25.0	25.0	short
-	X2	sin	901	-25.0	25.0	short
+	X1	sin	501	-25.0	25.0	short
+	X2	sin	501	-25.0	25.0	short
 end-pbasis-section
 
 INTEGRATOR-SECTION
@@ -82,9 +82,12 @@ end-integrator-section
 #############################################################
 INIT_WF-SECTION
 	build
-		X1 HO 0.0 0.0 0.0		# el DOF X1 comienza en cero
+		X1 eigenf hzero pop=1
 		X2 eigenf h1 pop=1		# el DOF X2 comienza en un autoestado de h1(x)
 	end-build
 end-init_wf-section
 
 end-input
+
+## run: rm -Rf result_folder/ && mctdh86 -mnd -w -p gamma 0.1 input_file.inp
+## plot: cd result_folder/ && showd1d86 -a f2
