@@ -8,7 +8,7 @@ Revision        :     2
 
 Heidelberg SVN repository no.: 1397
 Checkin date: Wed, 18 May 2022, 11:24:00
-Compiled: Thu, 15 Sep 2022, 15:31:16 ; Host: mendez-famaf
+Compiled: Fri, 09 Sep 2022, 11:44:14 ; Host: mendez-notebook
 Program name: showd1d86
 --------------------------------------------------------------------------------
 
@@ -18,8 +18,8 @@ Program name: showd1d86
  Total   :  2028120 Bytes ,       1.93 MB
 --------------------------------------------------------------------------------
 
-gridpop : /home/mendez/Documents/pde/version03/result_folder/gridpop
-dvr     : /home/mendez/Documents/pde/version03/result_folder/dvr
-output  : /home/mendez/Documents/pde/version03/result_folder/den1d_f1
+gridpop : /home/mendez/github_repositories/my_repositories/pde2022/final_project/MCTDH_simulations/03_version_components/result_folder/gridpop
+dvr     : /home/mendez/github_repositories/my_repositories/pde2022/final_project/MCTDH_simulations/03_version_components/result_folder/dvr
+output  : /home/mendez/github_repositories/my_repositories/pde2022/final_project/MCTDH_simulations/03_version_components/result_folder/den1d_f1
 --------------------------------------------------------------------------------
 
