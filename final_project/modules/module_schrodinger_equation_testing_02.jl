@@ -146,11 +146,24 @@ function bilineal_forms(p,q,r,dΩ)
 end
 
 # Formas bilineales para problema de autovalores (espacios real e imaginario separados)
+# function bilineal_forms_ReImParts(p,q,r,dΩ)
+#     a((u₁,u₂),(v₁,v₂)) = ∫(p*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))+q*(v₁*u₁+v₂*u₂))dΩ;
+#     b((u₁,u₂),(v₁,v₂)) = ∫(r*(v₁*u₁+v₂*u₂))dΩ;
+#     return a,b;
+# end
+
 function bilineal_forms_ReImParts(p,q,r,dΩ)
-    a((u₁,u₂),(v₁,v₂)) = ∫(p*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂))+q*(v₁*u₁+v₂*u₂))dΩ;
-    b((u₁,u₂),(v₁,v₂)) = ∫(r*(v₁*u₁+v₂*u₂))dΩ;
+    a₁((u₁,v₁))=∫(p*(∇(v₁)⋅∇(u₁))+q*(v₁*u₁))dΩ;
+    b₁((u₁,v₁))=∫(r*(v₁*u₁))dΩ;
+
+    a₂((u₂,v₂))=∫(p*(∇(v₂)⋅∇(u₂))+q*(v₂*u₂))dΩ;
+    b₂((u₂,v₂))=∫(r*(v₂*u₂))dΩ;
+
+    a((u₁,u₂),(v₁,v₂)) = a₁((u₁,v₁))+a₂((u₂,v₂))
+    b((u₁,u₂),(v₁,v₂)) = b₁((u₁,v₁))+b₂((u₂,v₂))
     return a,b;
 end
+
 
 # Norma L₂
 function norm_L2(u,dΩ)
@@ -178,28 +191,52 @@ function bilineal_forms_eigenprob_H(p,q₁,q₂,r,s,dΩ)
     return a,b;
 end
 
+# function bilineal_forms_eigenprob_H_ReImParts(p,q₁,q₂,r,s,dΩ)
+
+#     # parte real de la 1er coordenada
+#     a₁((u₁,u₃),(v₁,v₃))=∫(p*(∇(v₁)⋅∇(u₁))+q₁*(v₁*u₁)+s*(v₃*u₃))*dΩ;
+#     b₁((u₁,v₁))=∫(r*(v₁*u₁))*dΩ;
+
+#     # parte imaginaria de la 1er coordenada
+#     a₂((u₂,u₄),(v₂,v₄))=∫(p*(∇(v₂)⋅∇(u₂))+q₁*(v₂*u₂)+s*(v₄*u₄))*dΩ;
+#     b₂((u₂,v₂))=∫(r*(v₂*u₂))*dΩ;
+
+#     # parte real de la 2da coordenada
+#     a₃((u₃,u₁),(v₃,v₁))=∫(p*(∇(v₃)⋅∇(u₃))+q₂*(v₃*u₃)+s*(v₁*u₁))*dΩ;
+#     b₃((u₃,v₃))=∫(r*(v₃*u₃))*dΩ;
+
+#     # parte imaginaria de la 2da coordenada
+#     a₄((u₄,u₂),(v₄,v₂))=∫(p*(∇(v₄)⋅∇(u₄))+q₂*(v₄*u₄)+s*(v₂*u₂))*dΩ;
+#     b₄((u₄,v₄))=∫(r*(v₄*u₄))*dΩ;
+
+#     a((u₁,u₂,u₃,u₄),(v₁,v₂,v₃,v₄)) = a₁((u₁,u₃),(v₁,v₃))+a₂((u₂,u₄),(v₂,v₄))+a₃((u₃,u₁),(v₃,v₁))+a₄((u₄,u₂),(v₄,v₂))
+#     b((u₁,u₂,u₃,u₄),(v₁,v₂,v₃,v₄)) = b₁((u₁,v₁))+b₂((u₂,v₂))+b₃((u₃,v₃))+b₄((u₄,v₄))
+
+#     # a((u₁,u₂,u₃,u₄),(v₁,v₂,v₃,v₄)) = ∫(p*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂)+∇(v₃)⋅∇(u₃)+∇(v₄)⋅∇(u₄))+q₁*(v₁*u₁+v₂*u₂)+q₂*(v₃*u₃+v₄*u₄)+s*(v₁*u₁+v₂*u₂+v₃*u₃+v₄*u₄))*dΩ;
+#     # b((u₁,u₂,u₃,u₄),(v₁,v₂,v₃,v₄)) = ∫(r*(v₁*u₁+v₂*u₂+v₃*u₃+v₄*u₄))dΩ;
+#     return a,b;
+# end
+
 function bilineal_forms_eigenprob_H_ReImParts(p,q₁,q₂,r,s,dΩ)
 
     # parte real de la 1er coordenada
-    a₁((u₁,u₃),(v₁,v₃))=∫(p*(∇(v₁)⋅∇(u₁))+q₁*(v₁*u₁)+s*(v₃*u₃))*dΩ;
+    a₁((u₁,u₃),v₁)=∫(p*(∇(v₁)⋅∇(u₁))+q₁*(v₁*u₁)+s*(v₁*u₃))*dΩ;
     b₁((u₁,v₁))=∫(r*(v₁*u₁))*dΩ;
 
     # parte imaginaria de la 1er coordenada
-    a₂((u₂,u₄),(v₂,v₄))=∫(p*(∇(v₂)⋅∇(u₂))+q₁*(v₂*u₂)+s*(v₄*u₄))*dΩ;
+    a₂((u₂,u₄),v₂)=∫(p*(∇(v₂)⋅∇(u₂))+q₁*(v₂*u₂)+s*(v₂*u₄))*dΩ;
     b₂((u₂,v₂))=∫(r*(v₂*u₂))*dΩ;
 
     # parte real de la 2da coordenada
-    a₃((u₃,u₁),(v₃,v₁))=∫(p*(∇(v₃)⋅∇(u₃))+q₂*(v₃*u₃)+s*(v₁*u₁))*dΩ;
+    a₃((u₃,u₁),v₃)=∫(p*(∇(v₃)⋅∇(u₃))+q₂*(v₃*u₃)+s*(v₃*u₁))*dΩ;
     b₃((u₃,v₃))=∫(r*(v₃*u₃))*dΩ;
 
     # parte imaginaria de la 2da coordenada
-    a₄((u₄,u₂),(v₄,v₂))=∫(p*(∇(v₄)⋅∇(u₄))+q₂*(v₄*u₄)+s*(v₂*u₂))*dΩ;
+    a₄((u₄,u₂),v₄)=∫(p*(∇(v₄)⋅∇(u₄))+q₂*(v₄*u₄)+s*(v₄*u₂))*dΩ;
     b₄((u₄,v₄))=∫(r*(v₄*u₄))*dΩ;
 
-    a((u₁,u₂,u₃,u₄),(v₁,v₂,v₃,v₄)) = a₁((u₁,u₃),(v₁,v₃))+a₂((u₂,u₄),(v₂,v₄))+a₃((u₃,u₁),(v₃,v₁))+a₄((u₄,u₂),(v₄,v₂))
+    a((u₁,u₂,u₃,u₄),(v₁,v₂,v₃,v₄)) = a₁((u₁,u₃),v₁)+a₂((u₂,u₄),v₂)+a₃((u₃,u₁),v₃)+a₄((u₄,u₂),v₄)
     b((u₁,u₂,u₃,u₄),(v₁,v₂,v₃,v₄)) = b₁((u₁,v₁))+b₂((u₂,v₂))+b₃((u₃,v₃))+b₄((u₄,v₄))
 
-    # a((u₁,u₂,u₃,u₄),(v₁,v₂,v₃,v₄)) = ∫(p*(∇(v₁)⋅∇(u₁)+∇(v₂)⋅∇(u₂)+∇(v₃)⋅∇(u₃)+∇(v₄)⋅∇(u₄))+q₁*(v₁*u₁+v₂*u₂)+q₂*(v₃*u₃+v₄*u₄)+s*(v₁*u₁+v₂*u₂+v₃*u₃+v₄*u₄))*dΩ;
-    # b((u₁,u₂,u₃,u₄),(v₁,v₂,v₃,v₄)) = ∫(r*(v₁*u₁+v₂*u₂+v₃*u₃+v₄*u₄))dΩ;
     return a,b;
 end
