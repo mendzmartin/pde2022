@@ -1,0 +1,86 @@
+# /home/mendez/Documents/pde/version03/input_file.inp
+                ### ------- INPUT FILE ------- ###
+
+RUN-SECTION
+	name=result_folder
+	propagation
+	#geninwf
+	time-not-fs
+usepthreads = 4, summf2,no-funkphi
+ptiming		# Check ptiming file to control overload, and include
+			# no-* keywords accordingly to suppress inefficiently
+			# parallelized routines.
+	tfinal = 100 tout = 0.1 tpsi = 0.1
+	steps
+	gridpop # para showd1d
+	pdensity # particle density file. Useful to compute quantities after run.
+	veigen
+	psi
+	auto
+	#energy-not-ev
+end-run-section
+OPERATOR-SECTION
+	opname=operator_file
+end-operator-section
+SPF-BASIS-SECTION
+	multi-set
+		X = 1, 1
+end-spf-basis-section
+PBASIS-SECTION
+	X	sin	501	-25.0	25.0	short
+	el	el	2
+end-pbasis-section
+INTEGRATOR-SECTION
+	CMF/var	=	0.1	,	1d-6 # Initial step size, accuracy.
+	BS/spf	=	9	,	1d-7 # Order, accuracy, initial step.
+	SIL/A	=	10	,	1d-6 # Order, accuracy.
+end-integrator-section
+INIT_WF-SECTION
+	build
+		init_state = 2
+		X eigenf h1 pop=1		# el DOF X2 comienza en un autoestado de h1(x)
+	end-build
+end-init_wf-section
+end-input
+
+ -mnd -w -p gamma 0.1 
+
+#******************************************************************************#
+                ### ------ OPERATOR FILE ------ ###
+
+OP_DEFINE-SECTION
+	title
+		H = QHO 1D + V(x)
+	end-title
+end-op_define-section
+PARAMETER-SECTION
+	mass_X	= 1.d0, au	# masa asociada a DOF 1
+end-parameter-section
+LABELS-SECTION
+	QH01 = q^2
+	QHO2 = q[2]^2
+end-labels-section
+HAMILTONIAN-SECTION
+	-----------------------------------------------------
+	modes	|	el		|	X
+	-----------------------------------------------------
+	# kinetic energy
+	1.0		|	1		|	KE
+	# harmonic trap
+	0.5		|	S1&1	|	QH01
+	0.5		|	S2&2	|	QHO2
+	# interaction potential
+	gamma	|	S1&2	|	1
+	----------------------------------------------------
+end-hamiltonian-section
+HAMILTONIAN-SECTION_h1
+	-----------------------------------------------------
+	modes	|	X
+	-----------------------------------------------------
+	1.0		|	KE
+	0.5		|	QH01
+	----------------------------------------------------
+end-hamiltonian-section
+end-operator
+
+#******************************************************************************#
