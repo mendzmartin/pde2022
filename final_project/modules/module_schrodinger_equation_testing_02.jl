@@ -12,12 +12,12 @@
 ++ Definimos rutas a directorios específicos para buscar o guardar datos
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ =#
 
-path_models         = "../models/";
-path_images         = "../images/";
+path_models         = "../outputs/Output_Testing_02_TotalEigenProblemAndEvolution/models/";
+path_images         = "../outputs/Output_Testing_02_TotalEigenProblemAndEvolution/images/";
 path_modules        = "../modules/"
 path_gridap_makie   = "../gridap_makie/";
 path_videos         = "./videos/";
-path_plots          = "./plots/";
+path_plots          = "../outputs/Output_Testing_02_TotalEigenProblemAndEvolution/plots/";
 
 
 #= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -91,7 +91,7 @@ using Arpack;
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ =#
 
 include(path_modules*"module_eigen_prototype.jl");  # módulo para resolver problema de autovalores
-include(path_models*"mesh_generator.jl"); # módulo para construir grilla (1D)
+include(path_modules*"module_mesh_generator.jl");   # módulo para construir grilla (1D)
 
 #= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++ Seteo de variables globales
