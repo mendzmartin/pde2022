@@ -90,7 +90,7 @@ using Arpack;
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ =#
 
 include(path_modules*"module_eigen.jl");  # módulo para resolver problema de autovalores
-include(path_models*"mesh_generator.jl"); # módulo para construir grilla (1D)
+include(path_modules*"module_mesh_generator.jl"); # módulo para construir grilla (1D)
 
 #= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++ Seteo de variables globales
@@ -153,19 +153,6 @@ end
 
 # Formas bilineales para problema de autovalores
 #  deben verificar la integración por partes
-# function a_bilineal_forms_2D(α₁,α₂,Δt,dΩ)
-#     a₁((u₁,u₂),(v₁,v₂))=∫(2*(u₁*v₁)-(α*(∇(v₁)⋅∇(u₁))+α₁*(u₁*v₁)+β*(u₂*v₂))*Δt)dΩ
-#     a₂((u₂,u₁),(v₂,v₁))=∫(2*(u₂*v₂)-(α*(∇(v₂)⋅∇(u₂))+α₂*(u₂*v₂)+β*(u₁*v₁))*Δt)dΩ
-#     a((u₁,u₂),(v₁,v₂))=a₁((u₁,u₂),(v₁,v₂))+a₂((u₂,u₁),(v₂,v₁))
-#     return a;
-# end
-
-# function b_bilineal_form_2D(α₁,α₂,u₀₁,u₀₂,Δt,dΩ)
-#     b₁((v₁,v₂))=∫(2*(u₀₁*v₁)+(α*(∇(v₁)⋅∇(u₀₁))+α₁*(u₀₁*v₁)+β*(u₀₂*v₂))*Δt)dΩ
-#     b₂((v₂,v₁))=∫(2*(u₀₂*v₂)+(α*(∇(v₂)⋅∇(u₀₂))+α₂*(u₀₂*v₂)+β*(u₀₁*v₁))*Δt)dΩ
-#     b((v₁,v₂))=b₁((v₁,v₂))+b₂((v₂,v₁))
-#     return b;
-# end
 
 function a_bilineal_forms_2D(α₁,α₂,Δt,dΩ)
     a₁((u₁,u₂),v₁)=∫(2*(u₁*v₁)-(α*(∇(v₁)⋅∇(u₁))+α₁*(u₁*v₁)+β*(u₂*v₁))*Δt)dΩ

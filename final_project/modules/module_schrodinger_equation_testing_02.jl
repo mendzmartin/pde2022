@@ -88,7 +88,7 @@ using Arpack;
 ++ Importamos módulos
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ =#
 
-include(path_modules*"module_eigen_prototype.jl");  # módulo para resolver problema de autovalores
+include(path_modules*"module_eigen.jl");            # módulo para resolver problema de autovalores
 include(path_modules*"module_mesh_generator.jl");   # módulo para construir grilla (1D)
 
 #= +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
